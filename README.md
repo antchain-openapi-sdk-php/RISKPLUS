@@ -1,13 +1,13 @@
 English | [简体中文](README-CN.md)
 
-# Ant Chain RISKPLUS SDK for PHP
+# Ant Chain ABC SDK for PHP
 
 ## Installation
 
 ### Composer
 
 ```bash
-composer require antchain/riskplus
+composer require antchain/RISKPLUS
 ```
 
 ## Issues
