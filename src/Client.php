@@ -274,6 +274,8 @@ use AntChain\RISKPLUS\Models\ApplyDubbridgePetcashierRequest;
 use AntChain\RISKPLUS\Models\ApplyDubbridgePetcashierResponse;
 use AntChain\RISKPLUS\Models\QueryDubbridgePetorderRequest;
 use AntChain\RISKPLUS\Models\QueryDubbridgePetorderResponse;
+use AntChain\RISKPLUS\Models\SyncDubbridgeCustomRequest;
+use AntChain\RISKPLUS\Models\SyncDubbridgeCustomResponse;
 use AntChain\RISKPLUS\Models\VerifyFinserviceZhimaIdentifyRequest;
 use AntChain\RISKPLUS\Models\VerifyFinserviceZhimaIdentifyResponse;
 use AntChain\RISKPLUS\Models\QueryFinserviceZhimaIdentifyRequest;
@@ -755,7 +757,7 @@ class Client {
                     "req_msg_id" => UtilClient::getNonce(),
                     "access_key" => $this->_accessKeyId,
                     "base_sdk_version" => "TeaSDK-2.0",
-                    "sdk_version" => "1.31.31",
+                    "sdk_version" => "1.31.32",
                     "_prod_code" => "RISKPLUS",
                     "_prod_channel" => "undefined"
                 ];
@@ -4068,6 +4070,31 @@ class Client {
     public function queryDubbridgePetorderEx($request, $headers, $runtime){
         Utils::validateModel($request);
         return QueryDubbridgePetorderResponse::fromMap($this->doRequest("1.0", "riskplus.dubbridge.petorder.query", "HTTPS", "POST", "/gateway.do", Tea::merge($request), $headers, $runtime));
+    }
+
+    /**
+     * Description: 用户信息补充并同步至下游资金方
+     * Summary: 用户信息补充并同步至下游资金方
+     * @param SyncDubbridgeCustomRequest $request
+     * @return SyncDubbridgeCustomResponse
+     */
+    public function syncDubbridgeCustom($request){
+        $runtime = new RuntimeOptions([]);
+        $headers = [];
+        return $this->syncDubbridgeCustomEx($request, $headers, $runtime);
+    }
+
+    /**
+     * Description: 用户信息补充并同步至下游资金方
+     * Summary: 用户信息补充并同步至下游资金方
+     * @param SyncDubbridgeCustomRequest $request
+     * @param string[] $headers
+     * @param RuntimeOptions $runtime
+     * @return SyncDubbridgeCustomResponse
+     */
+    public function syncDubbridgeCustomEx($request, $headers, $runtime){
+        Utils::validateModel($request);
+        return SyncDubbridgeCustomResponse::fromMap($this->doRequest("1.0", "riskplus.dubbridge.custom.sync", "HTTPS", "POST", "/gateway.do", Tea::merge($request), $headers, $runtime));
     }
 
     /**
