@@ -27,6 +27,8 @@ use AntChain\RISKPLUS\Models\QueryBenefithubReportInformationRequest;
 use AntChain\RISKPLUS\Models\QueryBenefithubReportInformationResponse;
 use AntChain\RISKPLUS\Models\QueryBenefithubReportEffectiveRequest;
 use AntChain\RISKPLUS\Models\QueryBenefithubReportEffectiveResponse;
+use AntChain\RISKPLUS\Models\QueryBenefithubSubscriptionlinkRequest;
+use AntChain\RISKPLUS\Models\QueryBenefithubSubscriptionlinkResponse;
 use AntChain\RISKPLUS\Models\BatchqueryCreditshieldProductInfoRequest;
 use AntChain\RISKPLUS\Models\BatchqueryCreditshieldProductInfoResponse;
 use AntChain\RISKPLUS\Models\QueryCreditshieldProductCallbackRequest;
@@ -276,6 +278,8 @@ use AntChain\RISKPLUS\Models\QueryDubbridgePetorderRequest;
 use AntChain\RISKPLUS\Models\QueryDubbridgePetorderResponse;
 use AntChain\RISKPLUS\Models\SyncDubbridgeCustomRequest;
 use AntChain\RISKPLUS\Models\SyncDubbridgeCustomResponse;
+use AntChain\RISKPLUS\Models\QueryDubbridgeMerchantriskRequest;
+use AntChain\RISKPLUS\Models\QueryDubbridgeMerchantriskResponse;
 use AntChain\RISKPLUS\Models\VerifyFinserviceZhimaIdentifyRequest;
 use AntChain\RISKPLUS\Models\VerifyFinserviceZhimaIdentifyResponse;
 use AntChain\RISKPLUS\Models\QueryFinserviceZhimaIdentifyRequest;
@@ -757,7 +761,7 @@ class Client {
                     "req_msg_id" => UtilClient::getNonce(),
                     "access_key" => $this->_accessKeyId,
                     "base_sdk_version" => "TeaSDK-2.0",
-                    "sdk_version" => "1.31.32",
+                    "sdk_version" => "1.32.0",
                     "_prod_code" => "RISKPLUS",
                     "_prod_channel" => "undefined"
                 ];
@@ -975,6 +979,31 @@ class Client {
     public function queryBenefithubReportEffectiveEx($request, $headers, $runtime){
         Utils::validateModel($request);
         return QueryBenefithubReportEffectiveResponse::fromMap($this->doRequest("1.0", "riskplus.benefithub.report.effective.query", "HTTPS", "POST", "/gateway.do", Tea::merge($request), $headers, $runtime));
+    }
+
+    /**
+     * Description: 风险报告包月订阅页面链接获取接口
+     * Summary: 风险报告包月订阅页面链接获取接口
+     * @param QueryBenefithubSubscriptionlinkRequest $request
+     * @return QueryBenefithubSubscriptionlinkResponse
+     */
+    public function queryBenefithubSubscriptionlink($request){
+        $runtime = new RuntimeOptions([]);
+        $headers = [];
+        return $this->queryBenefithubSubscriptionlinkEx($request, $headers, $runtime);
+    }
+
+    /**
+     * Description: 风险报告包月订阅页面链接获取接口
+     * Summary: 风险报告包月订阅页面链接获取接口
+     * @param QueryBenefithubSubscriptionlinkRequest $request
+     * @param string[] $headers
+     * @param RuntimeOptions $runtime
+     * @return QueryBenefithubSubscriptionlinkResponse
+     */
+    public function queryBenefithubSubscriptionlinkEx($request, $headers, $runtime){
+        Utils::validateModel($request);
+        return QueryBenefithubSubscriptionlinkResponse::fromMap($this->doRequest("1.0", "riskplus.benefithub.subscriptionlink.query", "HTTPS", "POST", "/gateway.do", Tea::merge($request), $headers, $runtime));
     }
 
     /**
@@ -4095,6 +4124,31 @@ class Client {
     public function syncDubbridgeCustomEx($request, $headers, $runtime){
         Utils::validateModel($request);
         return SyncDubbridgeCustomResponse::fromMap($this->doRequest("1.0", "riskplus.dubbridge.custom.sync", "HTTPS", "POST", "/gateway.do", Tea::merge($request), $headers, $runtime));
+    }
+
+    /**
+     * Description: 商户入驻风控结果查询
+     * Summary: 商户入驻风控结果查询
+     * @param QueryDubbridgeMerchantriskRequest $request
+     * @return QueryDubbridgeMerchantriskResponse
+     */
+    public function queryDubbridgeMerchantrisk($request){
+        $runtime = new RuntimeOptions([]);
+        $headers = [];
+        return $this->queryDubbridgeMerchantriskEx($request, $headers, $runtime);
+    }
+
+    /**
+     * Description: 商户入驻风控结果查询
+     * Summary: 商户入驻风控结果查询
+     * @param QueryDubbridgeMerchantriskRequest $request
+     * @param string[] $headers
+     * @param RuntimeOptions $runtime
+     * @return QueryDubbridgeMerchantriskResponse
+     */
+    public function queryDubbridgeMerchantriskEx($request, $headers, $runtime){
+        Utils::validateModel($request);
+        return QueryDubbridgeMerchantriskResponse::fromMap($this->doRequest("1.0", "riskplus.dubbridge.merchantrisk.query", "HTTPS", "POST", "/gateway.do", Tea::merge($request), $headers, $runtime));
     }
 
     /**

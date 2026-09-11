@@ -28,6 +28,7 @@ class ApplyDubbridgePetcashierRequest extends Model {
         'returnUrl' => 'return_url',
         'enableTransfer' => 'enable_transfer',
         'extInfo' => 'ext_info',
+        'productCategory' => 'product_category',
     ];
     public function validate() {
         Model::validateRequired('channelCode', $this->channelCode, true);
@@ -99,6 +100,9 @@ class ApplyDubbridgePetcashierRequest extends Model {
         if (null !== $this->extInfo) {
             $res['ext_info'] = null !== $this->extInfo ? $this->extInfo->toMap() : null;
         }
+        if (null !== $this->productCategory) {
+            $res['product_category'] = $this->productCategory;
+        }
         return $res;
     }
     /**
@@ -163,6 +167,9 @@ class ApplyDubbridgePetcashierRequest extends Model {
         }
         if(isset($map['ext_info'])){
             $model->extInfo = PetCashierApplyExtInfo::fromMap($map['ext_info']);
+        }
+        if(isset($map['product_category'])){
+            $model->productCategory = $map['product_category'];
         }
         return $model;
     }
@@ -278,5 +285,16 @@ class ApplyDubbridgePetcashierRequest extends Model {
      * @var PetCashierApplyExtInfo
      */
     public $extInfo;
+
+    // 1:单活体
+    // 2:活体+商城套餐（领宠模式）
+    // 3:活体+商城套餐（零售模式）
+    // 4:单商品
+    // 5:单积分
+    // 6:宠秘会员订阅
+    /**
+     * @var string
+     */
+    public $productCategory;
 
 }
