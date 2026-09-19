@@ -160,13 +160,13 @@ class CreateDubbridgePetmallorderRequest extends Model {
      */
     public $goodsName;
 
-    // 商品待结算金额，单位：元
+    // 商品标价，单位：元
     /**
      * @var string
      */
     public $settleAmount;
 
-    // 储值卡支付金额，用于冻结/出账/分账的基数，单位元，两位小数
+    // 储值卡支付结算金额，用于冻结/出账/分账的基数，单位元，两位小数
     /**
      * @var string
      */

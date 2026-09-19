@@ -13,6 +13,7 @@ class CreateDubbridgePetmallorderResponse extends Model {
         'bizOrderNo' => 'biz_order_no',
         'createResult' => 'create_result',
         'failReason' => 'fail_reason',
+        'ownTradeNo' => 'own_trade_no',
     ];
     public function validate() {}
     public function toMap() {
@@ -34,6 +35,9 @@ class CreateDubbridgePetmallorderResponse extends Model {
         }
         if (null !== $this->failReason) {
             $res['fail_reason'] = $this->failReason;
+        }
+        if (null !== $this->ownTradeNo) {
+            $res['own_trade_no'] = $this->ownTradeNo;
         }
         return $res;
     }
@@ -60,6 +64,9 @@ class CreateDubbridgePetmallorderResponse extends Model {
         }
         if(isset($map['fail_reason'])){
             $model->failReason = $map['fail_reason'];
+        }
+        if(isset($map['own_trade_no'])){
+            $model->ownTradeNo = $map['own_trade_no'];
         }
         return $model;
     }
@@ -98,5 +105,11 @@ class CreateDubbridgePetmallorderResponse extends Model {
      * @var string
      */
     public $failReason;
+
+    // 商城订单的交易单号
+    /**
+     * @var string
+     */
+    public $ownTradeNo;
 
 }

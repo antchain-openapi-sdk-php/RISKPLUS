@@ -19,7 +19,6 @@ class QueryDubbridgePetFundRequest extends Model {
         Model::validateRequired('channelCode', $this->channelCode, true);
         Model::validateRequired('trafficPlatform', $this->trafficPlatform, true);
         Model::validateRequired('buyerId', $this->buyerId, true);
-        Model::validateRequired('tradeNo', $this->tradeNo, true);
     }
     public function toMap() {
         $res = [];

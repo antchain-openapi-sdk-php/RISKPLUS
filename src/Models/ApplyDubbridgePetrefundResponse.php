@@ -13,6 +13,7 @@ class ApplyDubbridgePetrefundResponse extends Model {
         'refundNo' => 'refund_no',
         'refundStatus' => 'refund_status',
         'remark' => 'remark',
+        'bizOrderNo' => 'biz_order_no',
     ];
     public function validate() {}
     public function toMap() {
@@ -34,6 +35,9 @@ class ApplyDubbridgePetrefundResponse extends Model {
         }
         if (null !== $this->remark) {
             $res['remark'] = $this->remark;
+        }
+        if (null !== $this->bizOrderNo) {
+            $res['biz_order_no'] = $this->bizOrderNo;
         }
         return $res;
     }
@@ -60,6 +64,9 @@ class ApplyDubbridgePetrefundResponse extends Model {
         }
         if(isset($map['remark'])){
             $model->remark = $map['remark'];
+        }
+        if(isset($map['biz_order_no'])){
+            $model->bizOrderNo = $map['biz_order_no'];
         }
         return $model;
     }
@@ -97,5 +104,11 @@ class ApplyDubbridgePetrefundResponse extends Model {
      * @var string
      */
     public $remark;
+
+    // 业务订单号
+    /**
+     * @var string
+     */
+    public $bizOrderNo;
 
 }

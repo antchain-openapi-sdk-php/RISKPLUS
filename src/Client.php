@@ -292,6 +292,8 @@ use AntChain\RISKPLUS\Models\ApplyDubbridgePetrefundRequest;
 use AntChain\RISKPLUS\Models\ApplyDubbridgePetrefundResponse;
 use AntChain\RISKPLUS\Models\QueryDubbridgePetrefundRequest;
 use AntChain\RISKPLUS\Models\QueryDubbridgePetrefundResponse;
+use AntChain\RISKPLUS\Models\ApplyDubbridgePetmallorderTransferRequest;
+use AntChain\RISKPLUS\Models\ApplyDubbridgePetmallorderTransferResponse;
 use AntChain\RISKPLUS\Models\VerifyFinserviceZhimaIdentifyRequest;
 use AntChain\RISKPLUS\Models\VerifyFinserviceZhimaIdentifyResponse;
 use AntChain\RISKPLUS\Models\QueryFinserviceZhimaIdentifyRequest;
@@ -773,7 +775,7 @@ class Client {
                     "req_msg_id" => UtilClient::getNonce(),
                     "access_key" => $this->_accessKeyId,
                     "base_sdk_version" => "TeaSDK-2.0",
-                    "sdk_version" => "1.33.0",
+                    "sdk_version" => "1.33.1",
                     "_prod_code" => "RISKPLUS",
                     "_prod_channel" => "undefined"
                 ];
@@ -4311,6 +4313,31 @@ class Client {
     public function queryDubbridgePetrefundEx($request, $headers, $runtime){
         Utils::validateModel($request);
         return QueryDubbridgePetrefundResponse::fromMap($this->doRequest("1.0", "riskplus.dubbridge.petrefund.query", "HTTPS", "POST", "/gateway.do", Tea::merge($request), $headers, $runtime));
+    }
+
+    /**
+     * Description: 分账提交，接口支持幂等
+     * Summary: 分账提交，接口支持幂等
+     * @param ApplyDubbridgePetmallorderTransferRequest $request
+     * @return ApplyDubbridgePetmallorderTransferResponse
+     */
+    public function applyDubbridgePetmallorderTransfer($request){
+        $runtime = new RuntimeOptions([]);
+        $headers = [];
+        return $this->applyDubbridgePetmallorderTransferEx($request, $headers, $runtime);
+    }
+
+    /**
+     * Description: 分账提交，接口支持幂等
+     * Summary: 分账提交，接口支持幂等
+     * @param ApplyDubbridgePetmallorderTransferRequest $request
+     * @param string[] $headers
+     * @param RuntimeOptions $runtime
+     * @return ApplyDubbridgePetmallorderTransferResponse
+     */
+    public function applyDubbridgePetmallorderTransferEx($request, $headers, $runtime){
+        Utils::validateModel($request);
+        return ApplyDubbridgePetmallorderTransferResponse::fromMap($this->doRequest("1.0", "riskplus.dubbridge.petmallorder.transfer.apply", "HTTPS", "POST", "/gateway.do", Tea::merge($request), $headers, $runtime));
     }
 
     /**

@@ -5,14 +5,14 @@ namespace AntChain\RISKPLUS\Models;
 
 use AlibabaCloud\Tea\Model;
 
+use AntChain\RISKPLUS\Models\UserFundInfo;
+
 class QueryDubbridgePetFundResponse extends Model {
     protected $_name = [
         'reqMsgId' => 'req_msg_id',
         'resultCode' => 'result_code',
         'resultMsg' => 'result_msg',
-        'petAvailableAmount' => 'pet_available_amount',
-        'mallAvailableAmount' => 'mall_available_amount',
-        'mallFrozenAmount' => 'mall_frozen_amount',
+        'fundList' => 'fund_list',
     ];
     public function validate() {}
     public function toMap() {
@@ -26,14 +26,14 @@ class QueryDubbridgePetFundResponse extends Model {
         if (null !== $this->resultMsg) {
             $res['result_msg'] = $this->resultMsg;
         }
-        if (null !== $this->petAvailableAmount) {
-            $res['pet_available_amount'] = $this->petAvailableAmount;
-        }
-        if (null !== $this->mallAvailableAmount) {
-            $res['mall_available_amount'] = $this->mallAvailableAmount;
-        }
-        if (null !== $this->mallFrozenAmount) {
-            $res['mall_frozen_amount'] = $this->mallFrozenAmount;
+        if (null !== $this->fundList) {
+            $res['fund_list'] = [];
+            if(null !== $this->fundList && is_array($this->fundList)){
+                $n = 0;
+                foreach($this->fundList as $item){
+                    $res['fund_list'][$n++] = null !== $item ? $item->toMap() : $item;
+                }
+            }
         }
         return $res;
     }
@@ -52,14 +52,14 @@ class QueryDubbridgePetFundResponse extends Model {
         if(isset($map['result_msg'])){
             $model->resultMsg = $map['result_msg'];
         }
-        if(isset($map['pet_available_amount'])){
-            $model->petAvailableAmount = $map['pet_available_amount'];
-        }
-        if(isset($map['mall_available_amount'])){
-            $model->mallAvailableAmount = $map['mall_available_amount'];
-        }
-        if(isset($map['mall_frozen_amount'])){
-            $model->mallFrozenAmount = $map['mall_frozen_amount'];
+        if(isset($map['fund_list'])){
+            if(!empty($map['fund_list'])){
+                $model->fundList = [];
+                $n = 0;
+                foreach($map['fund_list'] as $item) {
+                    $model->fundList[$n++] = null !== $item ? UserFundInfo::fromMap($item) : $item;
+                }
+            }
         }
         return $model;
     }
@@ -81,22 +81,10 @@ class QueryDubbridgePetFundResponse extends Model {
      */
     public $resultMsg;
 
-    // 活体可用金额，PET 账户行 available，单位元，两位小数
+    // 用户资金信息
     /**
-     * @var string
+     * @var UserFundInfo[]
      */
-    public $petAvailableAmount;
-
-    // 商城可用金额，未冻结的可用余额，单位：元
-    /**
-     * @var string
-     */
-    public $mallAvailableAmount;
-
-    // 商城当前冻结金额，单位：元
-    /**
-     * @var string
-     */
-    public $mallFrozenAmount;
+    public $fundList;
 
 }
