@@ -13,7 +13,6 @@ class ApplyDubbridgePetmallorderTransferResponse extends Model {
         'bizOrderNo' => 'biz_order_no',
         'settleResult' => 'settle_result',
         'failReason' => 'fail_reason',
-        'transferNo' => 'transfer_no',
     ];
     public function validate() {}
     public function toMap() {
@@ -35,9 +34,6 @@ class ApplyDubbridgePetmallorderTransferResponse extends Model {
         }
         if (null !== $this->failReason) {
             $res['fail_reason'] = $this->failReason;
-        }
-        if (null !== $this->transferNo) {
-            $res['transfer_no'] = $this->transferNo;
         }
         return $res;
     }
@@ -64,9 +60,6 @@ class ApplyDubbridgePetmallorderTransferResponse extends Model {
         }
         if(isset($map['fail_reason'])){
             $model->failReason = $map['fail_reason'];
-        }
-        if(isset($map['transfer_no'])){
-            $model->transferNo = $map['transfer_no'];
         }
         return $model;
     }
@@ -105,11 +98,5 @@ class ApplyDubbridgePetmallorderTransferResponse extends Model {
      * @var string
      */
     public $failReason;
-
-    // 分账单号，提交成功时返回
-    /**
-     * @var string
-     */
-    public $transferNo;
 
 }
