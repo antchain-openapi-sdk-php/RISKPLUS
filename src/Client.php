@@ -446,6 +446,8 @@ use AntChain\RISKPLUS\Models\ReceiveRbbParamsFileRequest;
 use AntChain\RISKPLUS\Models\ReceiveRbbParamsFileResponse;
 use AntChain\RISKPLUS\Models\ReceiveRbbOverseacompanyProfileRequest;
 use AntChain\RISKPLUS\Models\ReceiveRbbOverseacompanyProfileResponse;
+use AntChain\RISKPLUS\Models\InitGateWayServiceRequest;
+use AntChain\RISKPLUS\Models\InitGateWayServiceResponse;
 use AntChain\RISKPLUS\Models\QueryCreditshieldRestrictedRequest;
 use AntChain\RISKPLUS\Models\QueryCreditshieldRestrictedResponse;
 use AntChain\RISKPLUS\Models\QueryCreditshieldFixcontactRequest;
@@ -785,7 +787,7 @@ class Client {
                     "req_msg_id" => UtilClient::getNonce(),
                     "access_key" => $this->_accessKeyId,
                     "base_sdk_version" => "TeaSDK-2.0",
-                    "sdk_version" => "1.33.8",
+                    "sdk_version" => "1.33.9",
                     "_prod_code" => "RISKPLUS",
                     "_prod_channel" => "undefined"
                 ];
@@ -2477,7 +2479,7 @@ class Client {
 
     /**
      * Description: 天枢系统还款试算，根据借据号计算还款金额
-     * Summary: 天枢系统还款试算
+     * Summary: 天枢系统还款试算，根据借据号计算还款金额
      * @param CountDubbridgeRepayTrialRequest $request
      * @return CountDubbridgeRepayTrialResponse
      */
@@ -2489,7 +2491,7 @@ class Client {
 
     /**
      * Description: 天枢系统还款试算，根据借据号计算还款金额
-     * Summary: 天枢系统还款试算
+     * Summary: 天枢系统还款试算，根据借据号计算还款金额
      * @param CountDubbridgeRepayTrialRequest $request
      * @param string[] $headers
      * @param RuntimeOptions $runtime
@@ -6448,6 +6450,31 @@ class Client {
         }
         Utils::validateModel($request);
         return ReceiveRbbOverseacompanyProfileResponse::fromMap($this->doRequest("1.0", "riskplus.rbb.overseacompany.profile.receive", "HTTPS", "POST", "/gateway.do", Tea::merge($request), $headers, $runtime));
+    }
+
+    /**
+     * Description: 测试网关连通性
+     * Summary: 测试网关连通性
+     * @param InitGateWayServiceRequest $request
+     * @return InitGateWayServiceResponse
+     */
+    public function initGateWayService($request){
+        $runtime = new RuntimeOptions([]);
+        $headers = [];
+        return $this->initGateWayServiceEx($request, $headers, $runtime);
+    }
+
+    /**
+     * Description: 测试网关连通性
+     * Summary: 测试网关连通性
+     * @param InitGateWayServiceRequest $request
+     * @param string[] $headers
+     * @param RuntimeOptions $runtime
+     * @return InitGateWayServiceResponse
+     */
+    public function initGateWayServiceEx($request, $headers, $runtime){
+        Utils::validateModel($request);
+        return InitGateWayServiceResponse::fromMap($this->doRequest("1.0", "riskplus.gate.way.service.init", "HTTPS", "POST", "/gateway.do", Tea::merge($request), $headers, $runtime));
     }
 
     /**
